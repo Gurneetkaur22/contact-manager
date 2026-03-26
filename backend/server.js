@@ -18,6 +18,12 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/contactmana
 // Routes
 app.use('/api/contacts', require('./routes/contacts'));
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// For Vercel serverless
+module.exports = app;
+
+// For local development
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
