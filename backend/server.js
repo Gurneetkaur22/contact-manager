@@ -15,6 +15,11 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/contactmana
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err));
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ message: 'Contact Manager API is running' });
+});
+
 // Routes
 app.use('/api/contacts', require('./routes/contacts'));
 
